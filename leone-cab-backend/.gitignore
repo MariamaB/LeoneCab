@@ -1,0 +1,7 @@
+.env
+/src/generated/prisma
+node_modules
+psql_docs.md
+docs
+package-lock.json
+dist
