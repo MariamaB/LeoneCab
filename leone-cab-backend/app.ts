@@ -6,13 +6,13 @@ import { swaggerOptions } from './swaggerConfig';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 
-import userRoutes from '@/routes/userRoutes';
+import userRoutes from '@/user/user.routes';
 
-import { errorHandler } from '@/middleware/error/errorHandler';
-import { notFound } from '@/middleware/error/notFound';
-import healthRoutes from '@/routes/healthRoutes';
-import authRoutes from '@/routes/authRoutes';
-import { authMiddleware } from '@/middleware/authMiddleware';
+import { errorHandler } from '@/error/errorHandler';
+import { notFound } from '@/error/notFound';
+import healthRoutes from '@/health/health.routes';
+import authRoutes from '@/auth/auth.routes';
+import { authenticate } from '@/auth/auth.middleware';
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 // Define your routes and controllers here
-app.use('/users', authMiddleware, userRoutes);
+app.use('/user', authenticate, userRoutes);
 
 // Auth Routen
 app.use('/auth', authRoutes);

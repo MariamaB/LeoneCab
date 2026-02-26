@@ -1,10 +1,9 @@
-import { Interface } from 'node:readline';
-
+import { Role } from '@prisma/client';
 export interface IUser {
-  id?: number;
+  id: string;
   email: string;
   password: string;
   phone: string;
   name: string;
-  role: string;
+  role: Role;
 }

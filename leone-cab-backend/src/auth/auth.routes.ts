@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login } from '@/controllers/authController';
+import { register, login, refreshToken } from '@/auth/auth.controller';
 
 const router = Router();
 
@@ -42,11 +42,11 @@ const router = Router();
  *                 example: StrongPassword123
  *               role:
  *                 type: string
- *                 enum: [USER, DRIVER, ADMIN]
- *                 example: USER
+ *                 enum: [PASSENGER, DRIVER]
+ *                 example: PASSENGER
  *               phone:
  *                 type: string
- *                 example: "+49123456789"
+ *                 example: "+23299663163"
  *     responses:
  *       201:
  *         description: User successfully registered
@@ -73,7 +73,7 @@ router.post('/register', register);
  *             properties:
  *               email:
  *                 type: string
- *                 example: test@example.com
+ *                 example: john@example.com
  *               password:
  *                 type: string
  *                 example: StrongPassword123
@@ -92,5 +92,5 @@ router.post('/register', register);
  *         description: Invalid credentials
  */
 router.post('/login', login);
-
+router.post('/refresh', refreshToken);
 export default router;
